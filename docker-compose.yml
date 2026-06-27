@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  web:
+    image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/matapadi-web:latest
+    networks:
+      - matapadi-net
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first # Zero downtime rolling update
+      restart_policy:
+        condition: on-failure
+
+  # Optional Nginx Proxy for routing if not using a global Swarm Ingress like Traefik
+  nginx-proxy:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    networks:
+      - matapadi-net
+    depends_on:
+      - web
+    # In a real production environment, you would mount an nginx.conf here
+    # to proxy pass to the 'web' service and handle SSL certificates.
+    # volumes:
+    #   - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+
+networks:
+  matapadi-net:
+    driver: overlay

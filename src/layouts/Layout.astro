@@ -1,0 +1,101 @@
+---
+export interface Props {
+	title: string;
+}
+
+import '../styles/global.css';
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Sistem cerdas perlindungan pertanian menggunakan AI, IoT, dan Energi Surya untuk mendeteksi hama burung secara otomatis." />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/png" href="/logo.png" />
+		<title>{title}</title>
+
+        <!-- Google Fonts: Outfit for Headings, Inter for Body -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+		<slot name="head" />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--color-primary: #1e5a22; /* Deep Forest Green */
+		--color-primary-light: #2e8b35;
+		--color-bg: #fdfdfd; /* Off-white */
+		--color-bg-alt: #f4f7f4;
+		--color-text-main: #1f2937;
+		--color-text-muted: #4b5563;
+        --color-accent: #f59e0b; /* Amber */
+        
+        --radius-sm: 8px;
+        --radius-md: 16px;
+        --radius-lg: 24px;
+        
+        --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+	}
+
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	html {
+		font-family: 'Inter', sans-serif;
+		background-color: var(--color-bg);
+		color: var(--color-text-main);
+        scroll-behavior: smooth;
+	}
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Outfit', sans-serif;
+        color: var(--color-primary);
+        line-height: 1.2;
+    }
+
+    p {
+        line-height: 1.6;
+        color: var(--color-text-muted);
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    section {
+        padding: 100px 5%;
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .section-title p {
+        font-size: 1.125rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+</style>

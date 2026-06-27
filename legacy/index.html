@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATAPADI - Smart Agriculture Protection System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f8faf8;
+color:#333;
+}
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(0,0,0,.85);
+padding:15px;
+z-index:1000;
+text-align:center;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:0 20px;
+font-weight:600;
+}
+
+header{
+background:
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80');
+background-size:cover;
+background-position:center;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero h1{
+font-size:4rem;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:1.3rem;
+max-width:800px;
+margin:auto;
+}
+
+.hero img{
+width:450px;
+max-width:100%;
+margin-top:30px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+.btn{
+display:inline-block;
+margin-top:30px;
+padding:15px 35px;
+background:#2e7d32;
+color:white;
+text-decoration:none;
+border-radius:50px;
+font-weight:bold;
+}
+
+section{
+padding:90px 10%;
+}
+
+.title{
+text-align:center;
+margin-bottom:50px;
+}
+
+.title h2{
+font-size:2.5rem;
+color:#2e7d32;
+}
+
+.highlight{
+color:#2e7d32;
+font-weight:bold;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:25px;
+text-align:center;
+}
+
+.stat{
+background:#2e7d32;
+color:white;
+padding:30px;
+border-radius:15px;
+}
+
+.timeline{
+border-left:4px solid #2e7d32;
+padding-left:30px;
+}
+
+.timeline div{
+margin-bottom:30px;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+.gallery img{
+width:100%;
+height:350px;
+object-fit:cover;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.15);
+transition:.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.03);
+}
+
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+.contact{
+text-align:center;
+line-height:2;
+font-size:1.1rem;
+}
+
+.contact a{
+color:#2e7d32;
+font-weight:600;
+text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="#tentang">Tentang</a>
+<a href="#produk">Produk</a>
+<a href="#fitur">Fitur</a>
+<a href="#teknologi">Teknologi</a>
+<a href="#investor">Investor</a>
+<a href="#kontak">Kontak</a>
+</nav>
+
+<header>
+<div class="hero">
+
+<h1>MATAPADI</h1>
+
+<p>
+AI-Powered Smart Bird Pest Control System untuk meningkatkan hasil panen
+dan mengurangi kerugian petani melalui teknologi Computer Vision,
+IoT, dan Energi Terbarukan.
+</p>
+<a href="#investor" class="btn">
+Lihat Potensi Investasi
+</a>
+
+</div>
+</header>
+
+<section id="tentang">
+
+<div class="title">
+<h2>Tentang MATAPADI</h2>
+</div>
+
+<p>
+MATAPADI adalah solusi pertanian cerdas yang menggabungkan
+<span class="highlight">YOLOv8, Raspberry Pi, CCTV, ESP32, MQTT, dan Solar Energy</span>
+untuk mendeteksi hama burung secara otomatis dan mengaktifkan sistem
+pengusir secara real-time.
+
+Sistem ini dirancang untuk membantu petani mengurangi kehilangan hasil panen
+serta meningkatkan efisiensi pengawasan lahan.
+</p>
+
+</section>
+
+<section id="produk">
+
+<div class="title">
+<h2>Produk MATAPADI</h2>
+<p>
+Prototype Smart Bird Pest Control System berbasis AI,
+IoT, dan Energi Surya
+</p>
+</div>
+
+<div class="gallery">
+
+<img src="matapadi-1.jpeg" alt="MATAPADI Tampak Depan">
+
+<img src="matapadi-2.jpeg" alt="MATAPADI Tampak Samping">
+
+<img src="matapadi-3.jpeg" alt="MATAPADI Tampak Belakang">
+
+</div>
+
+</section>
+
+<section>
+
+<div class="title">
+<h2>Dampak yang Dihasilkan</h2>
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<h3>24/7</h3>
+<p>Monitoring Otomatis</p>
+</div>
+
+<div class="stat">
+<h3>AI Vision</h3>
+<p>Deteksi Burung Akurat</p>
+</div>
+
+<div class="stat">
+<h3>IoT</h3>
+<p>Kontrol Jarak Jauh</p>
+</div>
+
+<div class="stat">
+<h3>Solar</h3>
+<p>Energi Ramah Lingkungan</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="fitur">
+
+<div class="title">
+<h2>Fitur Unggulan</h2>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>Deteksi Burung AI</h3>
+<p>Menggunakan YOLOv8 untuk mengenali burung secara otomatis dari CCTV.</p>
+</div>
+
+<div class="card">
+<h3>Monitoring Real-Time</h3>
+<p>Pengawasan lahan pertanian selama 24 jam.</p>
+</div>
+
+<div class="card">
+<h3>IoT Control</h3>
+<p>Pengendalian speaker dan buzzer melalui MQTT.</p>
+</div>
+
+<div class="card">
+<h3>Dashboard Online</h3>
+<p>Monitoring dan pengelolaan perangkat dari mana saja.</p>
+</div>
+
+<div class="card">
+<h3>Notifikasi Instan</h3>
+<p>Peringatan otomatis saat terdeteksi hama burung.</p>
+</div>
+
+<div class="card">
+<h3>Energi Mandiri</h3>
+<p>Menggunakan panel surya dan baterai untuk operasional.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="teknologi">
+
+<div class="title">
+<h2>Teknologi yang Digunakan</h2>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>YOLOv8</h3>
+<p>Computer Vision & Object Detection.</p>
+</div>
+
+<div class="card">
+<h3>Raspberry Pi 5</h3>
+<p>Edge AI Processing.</p>
+</div>
+
+<div class="card">
+<h3>CCTV IP Camera</h3>
+<p>Video Monitoring.</p>
+</div>
+
+<div class="card">
+<h3>ESP32</h3>
+<p>IoT Device Controller.</p>
+</div>
+
+<div class="card">
+<h3>MQTT Cloud</h3>
+<p>Remote Communication.</p>
+</div>
+
+<div class="card">
+<h3>Solar Panel</h3>
+<p>Renewable Energy.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="investor">
+
+<div class="title">
+<h2>Peluang Investasi</h2>
+</div>
+
+<div class="timeline">
+
+<div>
+<h3>2026</h3>
+<p>Validasi Produk & Uji Lapangan.</p>
+</div>
+
+<div>
+<h3>2027</h3>
+<p>Komersialisasi dan Distribusi Regional.</p>
+</div>
+
+<div>
+<h3>2028</h3>
+<p>Ekspansi Nasional dan Integrasi Smart Farming.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="kontak">
+
+<div class="title">
+<h2>Hubungi Kami</h2>
+</div>
+
+<div class="contact">
+
+<p><strong>MATAPADI Smart Agriculture Technology</strong></p>
+
+<p>📱 WhatsApp : 085142608962</p>
+
+<p>
+📷 Instagram :
+<a href="https://instagram.com/matapadi.smartfarming" target="_blank">
+@matapadi.smartfarming
+</a>
+</p>
+
+<p>📧 Email : investor@matapadi.id</p>
+
+<p>🌐 Website : www.matapadi.id</p>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>MATAPADI</h3>
+
+<p>
+Protecting Harvests with Artificial Intelligence
+</p>
+
+<p>
+© 2026 All Rights Reserved.
+</p>
+
+</footer>
+
+</body>
+</html>

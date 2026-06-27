@@ -1,0 +1,111 @@
+---
+// src/components/Products.astro
+---
+
+<section id="produk" class="products-section">
+    <div class="section-title">
+        <h2>Perangkat Keras MATAPADI</h2>
+        <p>Sistem *smart farming* tangguh yang dirancang khusus untuk operasional lapangan 24/7 di bawah kondisi cuaca ekstrem.</p>
+    </div>
+
+    <div class="product-showcase">
+        <div class="product-gallery">
+            <figure class="product-card">
+                <div class="image-wrapper">
+                    <img src="/matapadi-1.jpeg" alt="Sistem MATAPADI Tampak Depan dengan Panel Surya" loading="lazy" />
+                </div>
+                <figcaption>
+                    <h3>Tampak Depan</h3>
+                    <p>Modul utama dengan kamera pengawas AI dan corong pengusir ultrasonik.</p>
+                </figcaption>
+            </figure>
+
+            <figure class="product-card">
+                <div class="image-wrapper">
+                    <img src="/matapadi-2.jpeg" alt="MATAPADI Tampak Samping dengan Panel Surya" loading="lazy" />
+                </div>
+                <figcaption>
+                    <h3>Sistem Kemandirian Energi</h3>
+                    <p>Dilengkapi panel surya 50WP untuk memastikan sistem beroperasi tanpa henti.</p>
+                </figcaption>
+            </figure>
+
+            <figure class="product-card">
+                <div class="image-wrapper">
+                    <img src="/matapadi-3.jpeg" alt="MATAPADI Tampak Belakang" loading="lazy" />
+                </div>
+                <figcaption>
+                    <h3>Box Industrial Grade</h3>
+                    <p>Box panel tahan cuaca (IP65) melindungi komponen elektronik dari hujan dan panas.</p>
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<style>
+    .products-section {
+        background-color: var(--color-bg-alt);
+        border-radius: 40px;
+        margin: 40px auto;
+        padding: 100px 5%;
+        max-width: 1360px; /* Slightly wider for the gallery */
+    }
+
+    .product-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 40px;
+        margin-top: 50px;
+    }
+
+    .product-card {
+        background: var(--color-bg);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+        border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .image-wrapper {
+        aspect-ratio: 4/3;
+        overflow: hidden;
+        background-color: #e5e7eb; /* placeholder color while loading */
+        position: relative;
+    }
+
+    /* Important: We fix the image aspect ratio so it doesn't look stretched or broken */
+    .image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.7s ease;
+    }
+
+    .product-card:hover .image-wrapper img {
+        transform: scale(1.05);
+    }
+
+    figcaption {
+        padding: 30px;
+    }
+
+    figcaption h3 {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+        color: var(--color-text-main);
+    }
+
+    figcaption p {
+        font-size: 0.95rem;
+        color: var(--color-text-muted);
+        line-height: 1.5;
+    }
+</style>

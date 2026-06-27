@@ -1,0 +1,152 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+
+export async function getStaticPaths() {
+  const researchEntries = await getCollection('research');
+  return researchEntries.map(entry => ({
+    params: { slug: entry.slug }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+// Generate JSON-LD for Article (AEO/GEO Optimization)
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": entry.data.title,
+  "description": entry.data.description,
+  "author": {
+    "@type": "Person",
+    "name": entry.data.author
+  },
+  "datePublished": entry.data.publishDate.toISOString(),
+  "publisher": {
+    "@type": "Organization",
+    "name": "MATAPADI Smart Agriculture",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.matapadi.id/favicon.svg"
+    }
+  }
+};
+---
+
+<Layout title={`${entry.data.title} | MATAPADI Research`}>
+  <Navigation />
+  
+  <Fragment slot="head">
+    <!-- Inject JSON-LD directly into the head for Googlebot / AI Crawlers -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <article class="research-article">
+    <header class="article-header">
+      <div class="meta">
+        <span class="date">{entry.data.publishDate.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+        <span class="author">Oleh: {entry.data.author}</span>
+      </div>
+      <h1>{entry.data.title}</h1>
+      <p class="description">{entry.data.description}</p>
+      
+      <div class="tags">
+        {entry.data.tags.map((tag: string) => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  <!-- Footer (Simplified for Article view) -->
+  <footer style="background: #111827; color: white; padding: 40px; text-align: center; margin-top: 100px;">
+    <p>© 2026 MATAPADI Smart Agriculture Technology.</p>
+  </footer>
+</Layout>
+
+<style>
+  .research-article {
+    max-width: 800px;
+    margin: 150px auto 0;
+    padding: 0 5%;
+  }
+
+  .article-header {
+    margin-bottom: 60px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 40px;
+  }
+
+  .meta {
+    display: flex;
+    gap: 20px;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 20px;
+    color: var(--color-primary);
+  }
+
+  .description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--color-text-main);
+    margin-bottom: 30px;
+    font-style: italic;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tag {
+    background: rgba(30, 90, 34, 0.1);
+    color: var(--color-primary);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  /* Prose styling for Markdown content */
+  .prose {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-text-main);
+  }
+
+  .prose :global(h1),
+  .prose :global(h2),
+  .prose :global(h3) {
+    font-family: 'Outfit', sans-serif;
+    color: var(--color-primary);
+    margin: 40px 0 20px;
+  }
+
+  .prose :global(h2) { font-size: 2rem; }
+  .prose :global(h3) { font-size: 1.5rem; }
+
+  .prose :global(p) { margin-bottom: 25px; }
+
+  .prose :global(ul), .prose :global(ol) {
+    margin-bottom: 25px;
+    padding-left: 20px;
+  }
+
+  .prose :global(li) { margin-bottom: 10px; }
+
+  .prose :global(strong) { color: #111; }
+</style>

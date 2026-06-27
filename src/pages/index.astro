@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Products from '../components/Products.astro';
+---
+
+<Layout title="MATAPADI - AI Smart Agriculture Pest Control">
+    <Navigation />
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <span class="badge">Inovasi Pertanian Cerdas</span>
+            <h1>Melindungi Panen Anda dengan <span class="text-gradient">Kecerdasan Buatan</span></h1>
+            <p>Sistem Pengusir Hama Burung Otomatis bertenaga AI, IoT, dan Energi Surya. Mengurangi kerugian petani hingga 80% tanpa perlu berjaga di sawah seharian.</p>
+            <div class="hero-cta">
+                <a href="#investor" class="btn btn-primary">Lihat Peluang Investasi</a>
+                <a href="#tentang" class="btn btn-secondary">Pelajari Teknologi Kami</a>
+            </div>
+        </div>
+        <div class="hero-video-container">
+            <!-- Animated Logo (Auto-played, looped, muted) -->
+            <video autoplay loop muted playsinline disablePictureInPicture oncontextmenu="return false;" class="hero-video">
+                <source src="/video-opening-mp.mp4" type="video/mp4" />
+                <source src="/video-opening-mp.MOV" type="video/quicktime" />
+            </video>
+        </div>
+    </header>
+
+    <!-- Tentang Section -->
+    <section id="tentang" class="about-section">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>Revolusi Agrikultur Indonesia</h2>
+                <p>MATAPADI menggabungkan teknologi mutakhir <strong>YOLOv8, Edge Computing (Raspberry Pi), dan Internet of Things (ESP32)</strong> dalam satu perangkat tangguh bertenaga surya.</p>
+                <p>Sistem kami mendeteksi pergerakan hama burung secara *real-time* melalui kamera, lalu secara otomatis mengaktifkan modul suara ultrasonik dan sirine untuk mengusir kawanan burung sebelum mereka memakan bulir padi.</p>
+                
+                <div class="about-stats" style="margin-top: 30px;">
+                    <div class="stat-box">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Pengawasan Non-stop</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">>90%</span>
+                        <span class="stat-label">Akurasi Deteksi AI</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-video-wrapper">
+                <!-- Testimonial Video -->
+                <video controls controlsList="nodownload" disablePictureInPicture oncontextmenu="return false;" preload="metadata" poster="/matapadi-1.jpeg" class="testimonial-video">
+                    <source src="/about-product.mp4" type="video/mp4" />
+                    Brosur Anda tidak mendukung tag video HTML5.
+                </video>
+                <div class="video-caption">
+                    <p><strong>Implementasi Lapangan:</strong> Penjelasan langsung dari Team MATAPADI mengenai cara kerja sistem secara *real-time*.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produk Section (Extracted to Component) -->
+    <Products />
+
+    <!-- Fitur & Teknologi Section -->
+    <section id="teknologi" class="tech-section">
+        <div class="section-title">
+            <h2>Spesifikasi Teknis & Fitur</h2>
+            <p>Ditenagai oleh stack teknologi industri modern untuk keandalan maksimal.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <h3>Computer Vision (YOLOv8)</h3>
+                <p>Model AI dilatih khusus untuk mengenali berbagai spesies burung hama endemik persawahan dengan latensi deteksi di bawah 0.5 detik.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+                </div>
+                <h3>Edge AI Processing</h3>
+                <p>Raspberry Pi memproses video secara lokal di persawahan, menghilangkan ketergantungan pada koneksi internet cepat untuk pengenalan objek.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg>
+                </div>
+                <h3>Komunikasi IoT (MQTT)</h3>
+                <p>Protokol pengiriman data ringan ke *cloud* memungkinkan petani memantau log hama dan mengontrol sirine jarak jauh lewat *dashboard* ponsel.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/><path d="M6 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h1"/><mpath d="m11 7-3 5h4l-3 5"/><line x1="22" x2="22" y1="11" y2="13"/></svg>
+                </div>
+                <h3>Kemandirian Energi</h3>
+                <p>Sistem terintegrasi dengan Solar Charge Controller (SCC) dan aki, menjamin operasional meski cuaca mendung berhari-hari.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Riset Section (GEO) -->
+    <section id="riset" class="research-section">
+        <div class="section-title">
+            <h2>Data Orisinal & Publikasi</h2>
+            <p>Akses hasil studi kasus lapangan dan *whitepaper* teknis mengenai efikasi perangkat kami.</p>
+        </div>
+        <div class="research-card">
+            <h3>Analisis Keberhasilan YOLOv8 MATAPADI Menurunkan Hama Burung 80%</h3>
+            <p>Studi kasus implementasi MATAPADI Smart Bird Pest Control di Kabupaten Demak membuktikan efisiensi sistem AI dalam agrikultur.</p>
+            <a href="/research/contoh-riset-yolov8" class="read-more">Baca Laporan Lengkap →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo-container" style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <img src="/logo.png" alt="MATAPADI Logo" style="height: 45px; width: auto; object-fit: contain;" />
+                    <h2 style="margin-bottom: 0;">MATAPADI.</h2>
+                </div>
+                <p>Protecting Harvests with Artificial Intelligence</p>
+            </div>
+            <div class="footer-contact">
+                <h3>Hubungi Kami</h3>
+                <p class="contact-item">
+                    <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                    WhatsApp : <a href="https://wa.me/6285142608962" target="_blank" rel="noopener noreferrer">0851-4260-8962</a>
+                </p>
+                <p class="contact-item">
+                    <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    Instagram : <a href="https://instagram.com/matapadi.smartfarming" target="_blank" rel="noopener noreferrer">@matapadi.smartfarming</a>
+                </p>
+                <p class="contact-item">
+                    <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    Email : <a href="mailto:inovasimatapadi@gmail.com" style="color: #4ade80; text-decoration: none;">inovasimatapadi@gmail.com</a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 MATAPADI Smart Agriculture Technology. All Rights Reserved.</p>
+        </div>
+    </footer>
+</Layout>
+
