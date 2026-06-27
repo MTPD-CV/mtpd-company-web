@@ -20,7 +20,7 @@ Sistem yang dipasang menggunakan arsitektur pemrosesan lokal (*Edge Computing*):
 2. **Unit Pemrosesan Edge:** Raspberry Pi 5 yang menjalankan model *Deep Learning*.
 3. **Model Kecerdasan Buatan:** YOLOv8 (*You Only Look Once* versi 8) yang telah di-*fine-tuning* dengan *dataset* khusus berisi 5.000 citra burung hama sawah Indonesia.
 4. **Modul Aktuator:** Speaker ultrasonik dan *buzzer* frekuensi tinggi (di atas 20kHz) yang tidak mengganggu manusia namun membuat burung merasa terancam.
-5. **Sumber Energi:** Panel surya 50WP dengan baterai *Deep Cycle* 12V 50Ah.
+5. **Sumber Energi:** Panel surya 100WP dengan baterai *Deep Cycle* 12V 50Ah.
 
 ## Hasil dan Pembahasan Data
 
