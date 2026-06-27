@@ -45,6 +45,7 @@ const jsonLd = {
 
   <article class="research-article">
     <header class="article-header">
+      <a href="/" class="back-button">← Kembali ke Beranda</a>
       <div class="meta">
         <span class="date">{entry.data.publishDate.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
         <span class="author">Oleh: {entry.data.author}</span>
@@ -81,6 +82,26 @@ const jsonLd = {
     margin-bottom: 60px;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     padding-bottom: 40px;
+  }
+
+  .back-button {
+    display: inline-block;
+    margin-bottom: 30px;
+    padding: 8px 16px;
+    background: var(--color-bg-alt);
+    color: var(--color-text-main);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .back-button:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: translateX(-3px);
   }
 
   .meta {
