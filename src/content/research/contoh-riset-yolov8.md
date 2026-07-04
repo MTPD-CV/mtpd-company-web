@@ -1,15 +1,15 @@
 ---
-title: "Analisis Keberhasilan YOLOv8 MATAPADI Menurunkan Hama Burung 80% di Sawah Demak"
-description: "Studi kasus implementasi MATAPADI Smart Bird Pest Control di Kabupaten Demak membuktikan efisiensi sistem AI dalam agrikultur."
-publishDate: 2026-06-21
+title: "Analisis Keberhasilan YOLOv8 MATAPADI Menurunkan Hama Burung 80% di Kabupaten Sukoharjo"
+description: "Studi kasus implementasi MATAPADI Smart Bird Pest Control di Kabupaten Sukoharjo membuktikan efisiensi sistem AI dalam agrikultur."
+publishDate: 2024-09-01
 author: "Panji Saputra (Lead of MATAPADI)"
 tags: ["YOLOv8", "Computer Vision", "Smart Farming", "Internet of Things", "Studi Kasus"]
 isCaseStudy: true
 ---
 
-# Analisis Keberhasilan YOLOv8 MATAPADI Menurunkan Hama Burung 80% di Sawah Demak
+# Analisis Keberhasilan YOLOv8 MATAPADI Menurunkan Hama Burung 80% di Kabupaten Sukoharjo
 
-Kehadiran hama burung pipit (*Lonchura punctulata*) menjelang masa panen padi selalu menjadi momok bagi petani di Kabupaten Demak, Jawa Tengah. Laporan historis menunjukkan bahwa serangan masif dapat menurunkan hasil panen hingga 30%. Pendekatan tradisional seperti menggunakan orang-orangan sawah atau jaring seringkali tidak efektif secara jangka panjang dan memakan biaya tenaga kerja yang tinggi.
+Kehadiran hama burung pipit (*Lonchura punctulata*) menjelang masa panen padi selalu menjadi momok bagi petani di Kabupaten Sukoharjo, Jawa Tengah. Laporan historis menunjukkan bahwa serangan masif dapat menurunkan hasil panen hingga 30%. Pendekatan tradisional seperti menggunakan orang-orangan sawah atau jaring seringkali tidak efektif secara jangka panjang dan memakan biaya tenaga kerja yang tinggi.
 
 Dalam riset eksperimental ini, **MATAPADI** mengimplementasikan perangkat purwarupa (*prototype*) berbasis *Computer Vision* dan IoT untuk melindungi lahan seluas 2 hektar selama 45 hari.
 
