@@ -1,0 +1,175 @@
+---
+// AudioPlayer.astro
+---
+
+<div id="audio-widget" class="audio-widget">
+  <button id="audio-toggle" class="audio-btn" aria-label="Play/Pause Background Music">
+    <!-- Muted Icon (Default state) -->
+    <svg id="icon-muted" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <line x1="23" y1="9" x2="17" y2="15"></line>
+      <line x1="17" y1="9" x2="23" y2="15"></line>
+    </svg>
+    <!-- Playing Icon -->
+    <svg id="icon-playing" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+    </svg>
+  </button>
+  <div class="audio-info">
+    <div class="marquee-container">
+      <span id="audio-title">Klik untuk memutar musik latar...</span>
+    </div>
+  </div>
+</div>
+
+<audio id="bgm-player" preload="metadata"></audio>
+
+<script>
+  // Playlist Definition
+  const playlist = [
+    { file: '/audio/konco-tani.mp3', title: 'Niken Salindry - Konco Tani' },
+    { file: '/audio/northern-attitude.mp3', title: 'Noah Kahan, Hozier - Northern Attitude' },
+    { file: '/audio/cobblestone-village.mp3', title: 'Medieval Music - Cobblestone Village' }
+  ];
+
+  let currentTrack = 0;
+  let isPlaying = false;
+
+  const audioEl = document.getElementById('bgm-player') as HTMLAudioElement;
+  const toggleBtn = document.getElementById('audio-toggle');
+  const titleEl = document.getElementById('audio-title');
+  const iconMuted = document.getElementById('icon-muted');
+  const iconPlaying = document.getElementById('icon-playing');
+
+  // Load first track but DO NOT PLAY (Respect Browser Autoplay Policy)
+  if (audioEl && playlist.length > 0) {
+    audioEl.src = playlist[currentTrack].file;
+    audioEl.volume = 0.5; // Set volume to 50%
+  }
+
+  // Toggle Play/Pause
+  toggleBtn?.addEventListener('click', () => {
+    if (!audioEl) return;
+
+    if (isPlaying) {
+      audioEl.pause();
+      isPlaying = false;
+      updateUI();
+    } else {
+      audioEl.play().then(() => {
+        isPlaying = true;
+        updateUI();
+      }).catch(err => {
+        console.error("Audio playback failed:", err);
+      });
+    }
+  });
+
+  // Auto play next track when ended
+  audioEl?.addEventListener('ended', () => {
+    currentTrack = (currentTrack + 1) % playlist.length;
+    audioEl.src = playlist[currentTrack].file;
+    if (isPlaying) {
+      audioEl.play();
+    }
+    updateUI();
+  });
+
+  function updateUI() {
+    if (isPlaying) {
+      iconMuted?.classList.add('hidden');
+      iconPlaying?.classList.remove('hidden');
+      if (titleEl) titleEl.textContent = "🎵 Memutar: " + playlist[currentTrack].title;
+    } else {
+      iconPlaying?.classList.add('hidden');
+      iconMuted?.classList.remove('hidden');
+      if (titleEl) titleEl.textContent = "BGM Jeda - " + playlist[currentTrack].title;
+    }
+  }
+</script>
+
+<style>
+  .audio-widget {
+    position: fixed;
+    bottom: 30px;
+    left: 30px; /* Di Kiri Bawah agar tidak menutupi FAB WhatsApp di kanan */
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 8px 16px 8px 8px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    max-width: 250px;
+    transition: transform 0.3s ease;
+  }
+
+  .audio-widget:hover {
+    transform: translateY(-3px);
+  }
+
+  .audio-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-primary);
+    color: white;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.3s ease;
+  }
+
+  .audio-btn:hover {
+    background: var(--color-primary-light);
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .audio-info {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 150px;
+  }
+
+  .marquee-container {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 15s linear infinite;
+  }
+
+  #audio-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-main);
+  }
+
+  @keyframes marquee {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .audio-widget {
+      bottom: 20px;
+      left: 20px;
+      max-width: 200px;
+    }
+    
+    .audio-info {
+      width: 110px;
+    }
+  }
+</style>
