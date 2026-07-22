@@ -24,13 +24,11 @@
   </div>
 </div>
 
-<audio id="bgm-player" preload="metadata"></audio>
+<audio id="bgm-player" preload="metadata" loop></audio>
 
 <script>
-  // Playlist Definition
+  // Single Track Definition
   const playlist = [
-    { file: '/audio/konco-tani.mp3', title: 'Niken Salindry - Konco Tani' },
-    { file: '/audio/northern-attitude.mp3', title: 'Noah Kahan, Hozier - Northern Attitude' },
     { file: '/audio/cobblestone-village.mp3', title: 'Medieval Music - Cobblestone Village' }
   ];
 
@@ -42,6 +40,7 @@
   const titleEl = document.getElementById('audio-title');
   const iconMuted = document.getElementById('icon-muted');
   const iconPlaying = document.getElementById('icon-playing');
+  const widgetEl = document.getElementById('audio-widget');
 
   // Load first track but DO NOT PLAY (Respect Browser Autoplay Policy)
   if (audioEl && playlist.length > 0) {
@@ -56,25 +55,17 @@
     if (isPlaying) {
       audioEl.pause();
       isPlaying = false;
+      widgetEl?.classList.remove('is-expanded');
       updateUI();
     } else {
       audioEl.play().then(() => {
         isPlaying = true;
+        widgetEl?.classList.add('is-expanded');
         updateUI();
       }).catch(err => {
         console.error("Audio playback failed:", err);
       });
     }
-  });
-
-  // Auto play next track when ended
-  audioEl?.addEventListener('ended', () => {
-    currentTrack = (currentTrack + 1) % playlist.length;
-    audioEl.src = playlist[currentTrack].file;
-    if (isPlaying) {
-      audioEl.play();
-    }
-    updateUI();
   });
 
   function updateUI() {
@@ -94,7 +85,7 @@
   .audio-widget {
     position: fixed;
     bottom: 30px;
-    left: 30px; /* Di Kiri Bawah agar tidak menutupi FAB WhatsApp di kanan */
+    left: 0; /* Di Kiri Bawah menempel layar */
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -102,16 +93,19 @@
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 8px 16px 8px 8px;
-    border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 6px 16px 6px 6px; /* Padding kiri lebih kecil */
+    border-radius: 0 50px 50px 0; /* Rata di kiri, melengkung di kanan */
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: none;
     max-width: 250px;
-    transition: transform 0.3s ease;
+    /* Lebar tombol(36) + pad kiri(6) + sedikit ruang(10) = 52px yang terlihat */
+    transform: translateX(calc(-100% + 52px));
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
-  .audio-widget:hover {
-    transform: translateY(-3px);
+  .audio-widget:hover, .audio-widget.is-expanded {
+    transform: translateX(0);
   }
 
   .audio-btn {
@@ -164,10 +158,16 @@
   @media (max-width: 768px) {
     .audio-widget {
       bottom: 20px;
-      left: 20px;
+      /* Pastikan left tetap 0 di mobile agar drawer menempel */
+      left: 0;
       max-width: 200px;
+      transform: translateX(calc(-100% + 48px)); /* Disesuaikan dengan mobile */
     }
     
+    .audio-widget:hover, .audio-widget.is-expanded {
+      transform: translateX(0);
+    }
+
     .audio-info {
       width: 110px;
     }
