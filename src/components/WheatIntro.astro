@@ -1,0 +1,134 @@
+---
+// WheatIntro.astro
+---
+
+<div id="wheat-splash" class="wheat-splash-container">
+  <img src="/images/rice-grain.svg" alt="" class="wheat-stalk wheat-left" />
+  <img src="/images/rice-grain.svg" alt="" class="wheat-stalk wheat-right" />
+</div>
+
+<script>
+  // Hapus komponen dari memori layar (DOM) setelah animasi selesai
+  // agar klik pengunjung tidak terhalangi (Performance & UX optimization)
+  document.addEventListener("DOMContentLoaded", () => {
+    const splash = document.getElementById('wheat-splash');
+    if (splash) {
+      setTimeout(() => {
+        splash.remove();
+      }, 3500); // Hapus 0.5 detik setelah animasi CSS (3s) usai
+    }
+  });
+</script>
+
+<style>
+  .wheat-splash-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Memastikan klik tembus ke tombol di belakangnya */
+    z-index: 99999; /* Muncul paling depan */
+    overflow: hidden;
+  }
+
+  .wheat-stalk {
+    position: absolute;
+    bottom: -60vh;
+    height: 60vh;
+    max-height: 450px;
+    opacity: 0;
+    /* CSS Filter Generator: Mengubah warna asli gambar SVG menjadi Forest Green (#1e5a22) */
+    filter: invert(29%) sepia(45%) saturate(718%) hue-rotate(76deg) brightness(97%) contrast(89%);
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1); /* Efek pegas/lembut */
+    animation-fill-mode: forwards;
+  }
+
+  /* Sebelah Kiri */
+  .wheat-left {
+    left: -5vw;
+    transform-origin: bottom left;
+    animation-name: riseAndFallLeft;
+  }
+
+  /* Sebelah Kanan (Dibalik horizontal dengan scaleX) */
+  .wheat-right {
+    right: -5vw;
+    transform-origin: bottom right;
+    animation-name: riseAndFallRight;
+  }
+
+  /* KOREOGRAFI ANIMASI KIRI */
+  @keyframes riseAndFallLeft {
+    0% { 
+        bottom: -60vh; 
+        opacity: 0; 
+        transform: rotate(0deg); 
+    }
+    15% { 
+        opacity: 1; 
+    }
+    30% { 
+        bottom: -5vh; 
+        opacity: 1; 
+        transform: rotate(45deg); 
+    }
+    70% { 
+        bottom: -5vh; 
+        opacity: 1; 
+        transform: rotate(45deg); 
+    }
+    85% { 
+        opacity: 1; 
+    }
+    100% { 
+        bottom: -60vh; 
+        opacity: 0; 
+        transform: rotate(0deg); 
+    }
+  }
+
+  /* KOREOGRAFI ANIMASI KANAN */
+  @keyframes riseAndFallRight {
+    0% { 
+        bottom: -60vh; 
+        opacity: 0; 
+        transform: scaleX(-1) rotate(0deg); 
+    }
+    15% { 
+        opacity: 1; 
+    }
+    30% { 
+        bottom: -5vh; 
+        opacity: 1; 
+        transform: scaleX(-1) rotate(45deg); /* ScaleX memantulkan, Rotate memiringkan */
+    }
+    70% { 
+        bottom: -5vh; 
+        opacity: 1; 
+        transform: scaleX(-1) rotate(45deg); 
+    }
+    85% { 
+        opacity: 1; 
+    }
+    100% { 
+        bottom: -60vh; 
+        opacity: 0; 
+        transform: scaleX(-1) rotate(0deg); 
+    }
+  }
+
+  /* Mode Responsif untuk HP (Ukuran padi diperkecil agar tidak menutup layar penuh) */
+  @media (max-width: 768px) {
+    .wheat-stalk {
+      height: 45vh;
+    }
+    @keyframes riseAndFallLeft {
+      30%, 70% { bottom: 5vh; transform: rotate(35deg); }
+    }
+    @keyframes riseAndFallRight {
+      30%, 70% { bottom: 5vh; transform: scaleX(-1) rotate(35deg); }
+    }
+  }
+</style>
