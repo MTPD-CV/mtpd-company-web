@@ -152,22 +152,20 @@
     100% { box-shadow: 0 0 20px rgba(30, 90, 34, 0.85); }
   }
 
-  /* Logika Tampilan Ikon yang Sangat Kuat (Anti-Bocor) */
+  /* Logika Tampilan Ikon (Desktop First) */
   .audio-btn svg {
     display: none; /* Sembunyikan semua SVG secara bawaan */
   }
 
-  /* Tampilkan panah HANYA saat posisi sembunyi (tucked) */
-  .audio-widget:not(:hover):not(.is-expanded) .audio-btn #icon-arrow {
+  /* Desktop: Selalu tampilkan Speaker (Kecuali sedang dijeda/diputar oleh JS) */
+  .audio-btn #icon-muted:not(.is-js-hidden),
+  .audio-btn #icon-playing:not(.is-js-hidden) {
     display: block;
   }
 
-  /* Tampilkan ikon status (Speaker) HANYA saat ditarik/hovered */
-  .audio-widget:hover .audio-btn #icon-muted:not(.is-js-hidden),
-  .audio-widget.is-expanded .audio-btn #icon-muted:not(.is-js-hidden),
-  .audio-widget:hover .audio-btn #icon-playing:not(.is-js-hidden),
-  .audio-widget.is-expanded .audio-btn #icon-playing:not(.is-js-hidden) {
-    display: block;
+  /* Desktop: Panah tidak pernah muncul */
+  .audio-btn #icon-arrow {
+    display: none !important;
   }
 
   .is-js-hidden {
@@ -227,6 +225,16 @@
 
     .audio-info {
       width: 110px;
+    }
+
+    /* Mobile: Logika Khusus Panah saat tertutup (Tucked) */
+    .audio-widget:not(:hover):not(.is-expanded) .audio-btn #icon-arrow {
+      display: block !important;
+    }
+    
+    .audio-widget:not(:hover):not(.is-expanded) .audio-btn #icon-muted,
+    .audio-widget:not(:hover):not(.is-expanded) .audio-btn #icon-playing {
+      display: none !important;
     }
   }
 </style>
