@@ -38,6 +38,7 @@
 
   let currentTrack = 0;
   let isPlaying = false;
+  let collapseTimeout;
 
   const audioEl = document.getElementById('bgm-player') as HTMLAudioElement;
   const toggleBtn = document.getElementById('audio-toggle');
@@ -59,13 +60,21 @@
     if (isPlaying) {
       audioEl.pause();
       isPlaying = false;
-      widgetEl?.classList.remove('is-expanded');
+      widgetEl?.classList.remove('is-expanded', 'is-playing');
+      clearTimeout(collapseTimeout); // Batalkan timer jika dijeda
       updateUI();
     } else {
       audioEl.play().then(() => {
         isPlaying = true;
-        widgetEl?.classList.add('is-expanded');
+        widgetEl?.classList.add('is-expanded', 'is-playing');
         updateUI();
+
+        // Fitur UX: Auto-Collapse laci setelah 4 detik agar tidak menutupi layar
+        clearTimeout(collapseTimeout);
+        collapseTimeout = setTimeout(() => {
+          widgetEl?.classList.remove('is-expanded');
+        }, 4000);
+
       }).catch(err => {
         console.error("Audio playback failed:", err);
       });
@@ -132,6 +141,16 @@
   .audio-widget.is-expanded .audio-btn {
     background: var(--color-primary);
     color: white; /* Ikon speaker warna putih saat ditarik */
+  }
+
+  /* Indikator Denyut (Breathing Glow) saat menyembunyi & menyala */
+  .audio-widget.is-playing:not(:hover):not(.is-expanded) .audio-btn {
+    animation: breathingGlow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes breathingGlow {
+    0% { box-shadow: 2px 0 5px rgba(0,0,0,0.1); }
+    100% { box-shadow: 0 0 20px rgba(30, 90, 34, 0.85); }
   }
 
   /* Logika Tampilan Ikon */
