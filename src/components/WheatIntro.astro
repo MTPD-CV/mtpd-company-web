@@ -15,7 +15,7 @@
     if (splash) {
       setTimeout(() => {
         splash.remove();
-      }, 3500); // Hapus 0.5 detik setelah animasi CSS (3s) usai
+      }, 7500); // Hapus 0.5 detik setelah animasi CSS (7s) usai
     }
   });
 </script>
@@ -34,101 +34,102 @@
 
   .wheat-stalk {
     position: absolute;
-    bottom: -60vh;
-    height: 60vh;
-    max-height: 450px;
+    bottom: -15vh;
+    height: 55vh;
+    max-height: 400px;
     opacity: 0;
     /* CSS Filter Generator: Mengubah warna asli gambar SVG menjadi Forest Green (#1e5a22) */
     filter: invert(29%) sepia(45%) saturate(718%) hue-rotate(76deg) brightness(97%) contrast(89%);
-    animation-duration: 3s;
-    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1); /* Efek pegas/lembut */
+    animation-duration: 7s;
+    animation-timing-function: ease-in-out; 
     animation-fill-mode: forwards;
   }
 
   /* Sebelah Kiri */
   .wheat-left {
-    left: -5vw;
-    transform-origin: bottom left;
-    animation-name: riseAndFallLeft;
+    left: -10vw;
+    transform-origin: bottom center;
+    animation-name: swayLeft;
   }
 
-  /* Sebelah Kanan (Dibalik horizontal dengan scaleX) */
+  /* Sebelah Kanan */
   .wheat-right {
-    right: -5vw;
-    transform-origin: bottom right;
-    animation-name: riseAndFallRight;
+    right: -10vw;
+    transform-origin: bottom center;
+    animation-name: swayRight;
   }
 
-  /* KOREOGRAFI ANIMASI KIRI */
-  @keyframes riseAndFallLeft {
+  /* KOREOGRAFI ANIMASI KIRI (Tumbuh & Mengayun) */
+  @keyframes swayLeft {
     0% { 
-        bottom: -60vh; 
         opacity: 0; 
-        transform: rotate(0deg); 
+        transform: scale(0.6) rotate(20deg); 
     }
-    15% { 
+    15% { /* Detik 1.05: Mekar penuh di sudut */
         opacity: 1; 
+        transform: scale(1) rotate(45deg); 
     }
-    30% { 
-        bottom: -5vh; 
+    30% { /* Mengayun ke kanan */
         opacity: 1; 
-        transform: rotate(45deg); 
+        transform: scale(1) rotate(48deg); 
     }
-    70% { 
-        bottom: -5vh; 
+    50% { /* Mengayun ke kiri */
         opacity: 1; 
-        transform: rotate(45deg); 
+        transform: scale(1) rotate(43deg); 
     }
-    85% { 
+    70% { /* Mengayun santai */
         opacity: 1; 
+        transform: scale(1) rotate(46deg); 
     }
-    100% { 
-        bottom: -60vh; 
+    85% { /* Bersiap menghilang */
+        opacity: 1; 
+        transform: scale(1) rotate(45deg); 
+    }
+    100% { /* Memudar dan mengecil ke sudut */
         opacity: 0; 
-        transform: rotate(0deg); 
+        transform: scale(0.6) rotate(60deg); 
     }
   }
 
   /* KOREOGRAFI ANIMASI KANAN */
-  @keyframes riseAndFallRight {
+  @keyframes swayRight {
     0% { 
-        bottom: -60vh; 
         opacity: 0; 
-        transform: scaleX(-1) rotate(0deg); 
+        transform: scaleX(-1) scale(0.6) rotate(20deg); 
     }
     15% { 
         opacity: 1; 
+        transform: scaleX(-1) scale(1) rotate(45deg); 
     }
     30% { 
-        bottom: -5vh; 
         opacity: 1; 
-        transform: scaleX(-1) rotate(45deg); /* ScaleX memantulkan, Rotate memiringkan */
+        transform: scaleX(-1) scale(1) rotate(48deg); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: scaleX(-1) scale(1) rotate(43deg); 
     }
     70% { 
-        bottom: -5vh; 
         opacity: 1; 
-        transform: scaleX(-1) rotate(45deg); 
+        transform: scaleX(-1) scale(1) rotate(46deg); 
     }
     85% { 
         opacity: 1; 
+        transform: scaleX(-1) scale(1) rotate(45deg); 
     }
     100% { 
-        bottom: -60vh; 
         opacity: 0; 
-        transform: scaleX(-1) rotate(0deg); 
+        transform: scaleX(-1) scale(0.6) rotate(60deg); 
     }
   }
 
-  /* Mode Responsif untuk HP (Ukuran padi diperkecil agar tidak menutup layar penuh) */
+  /* Mode Responsif untuk HP */
   @media (max-width: 768px) {
     .wheat-stalk {
-      height: 45vh;
+      height: 40vh;
+      bottom: -10vh;
     }
-    @keyframes riseAndFallLeft {
-      30%, 70% { bottom: 5vh; transform: rotate(35deg); }
-    }
-    @keyframes riseAndFallRight {
-      30%, 70% { bottom: 5vh; transform: scaleX(-1) rotate(35deg); }
-    }
+    .wheat-left { left: -15vw; }
+    .wheat-right { right: -15vw; }
   }
 </style>
