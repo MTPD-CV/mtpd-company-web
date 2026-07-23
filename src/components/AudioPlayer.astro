@@ -76,11 +76,11 @@
     if (isPlaying) {
       iconMuted?.classList.add('is-js-hidden');
       iconPlaying?.classList.remove('is-js-hidden');
-      if (titleEl) titleEl.textContent = "🎵 Memutar: " + playlist[currentTrack].title;
+      if (titleEl) titleEl.innerHTML = `🎵 Memutar: ${playlist[currentTrack].title} <span class="audio-source">Source by YouTube</span>`;
     } else {
       iconPlaying?.classList.add('is-js-hidden');
       iconMuted?.classList.remove('is-js-hidden');
-      if (titleEl) titleEl.textContent = "BGM Jeda - " + playlist[currentTrack].title;
+      if (titleEl) titleEl.innerHTML = `BGM Jeda - ${playlist[currentTrack].title} <span class="audio-source">Source by YouTube</span>`;
     }
   }
 </script>
@@ -170,6 +170,20 @@
     font-size: 0.85rem;
     font-weight: 500;
     color: var(--color-text-main);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .audio-source {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #666;
+    background: rgba(0, 0, 0, 0.06);
+    padding: 2px 8px;
+    border-radius: 12px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
   }
 
   @keyframes marquee {
