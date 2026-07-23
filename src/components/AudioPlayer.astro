@@ -153,19 +153,21 @@
     100% { box-shadow: 0 0 20px rgba(30, 90, 34, 0.85); }
   }
 
-  /* Logika Tampilan Ikon */
-  .icon-arrow { display: block; }
-  .icon-muted, .icon-playing { display: none; }
-
-  .audio-widget:hover .icon-arrow,
-  .audio-widget.is-expanded .icon-arrow {
-    display: none;
+  /* Logika Tampilan Ikon yang Sangat Kuat (Anti-Bocor) */
+  .audio-btn svg {
+    display: none; /* Sembunyikan semua SVG secara bawaan */
   }
 
-  .audio-widget:hover .icon-muted:not(.is-js-hidden),
-  .audio-widget.is-expanded .icon-muted:not(.is-js-hidden),
-  .audio-widget:hover .icon-playing:not(.is-js-hidden),
-  .audio-widget.is-expanded .icon-playing:not(.is-js-hidden) {
+  /* Tampilkan panah HANYA saat posisi sembunyi (tucked) */
+  .audio-widget:not(:hover):not(.is-expanded) .audio-btn #icon-arrow {
+    display: block;
+  }
+
+  /* Tampilkan ikon status (Speaker) HANYA saat ditarik/hovered */
+  .audio-widget:hover .audio-btn #icon-muted:not(.is-js-hidden),
+  .audio-widget.is-expanded .audio-btn #icon-muted:not(.is-js-hidden),
+  .audio-widget:hover .audio-btn #icon-playing:not(.is-js-hidden),
+  .audio-widget.is-expanded .audio-btn #icon-playing:not(.is-js-hidden) {
     display: block;
   }
 
@@ -217,7 +219,7 @@
       /* Pastikan left tetap 0 di mobile agar drawer menempel */
       left: 0;
       max-width: 200px;
-      transform: translateX(calc(-100% + 48px)); /* Disesuaikan dengan mobile */
+      transform: translateX(calc(-100% + 42px)); /* Menyembunyikan teks sepenuhnya */
     }
     
     .audio-widget:hover, .audio-widget.is-expanded {
