@@ -34,12 +34,12 @@
 
   .wheat-stalk {
     position: absolute;
-    bottom: -15vh;
-    height: 55vh;
-    max-height: 400px;
+    bottom: -25vh; /* Diturunkan agar raksasa tapi natural di pojok */
+    height: 70vh;  /* Skala Raksasa di Desktop */
     opacity: 0;
-    /* Efek Hybrid/Mewah: Menggunakan warna asli (Emas) dipadu dengan Aura Cahaya Hijau (Drop Shadow) */
-    filter: drop-shadow(0px 0px 30px rgba(30, 90, 34, 0.9));
+    /* Efek Hybrid/Mewah: Menggunakan warna asli (Emas) dipadu dengan 2 lapis Aura Cahaya Hijau pekat */
+    filter: drop-shadow(0px 0px 8px rgba(30, 90, 34, 1)) drop-shadow(0px 0px 25px rgba(30, 90, 34, 0.85));
+    -webkit-filter: drop-shadow(0px 0px 8px rgba(30, 90, 34, 1)) drop-shadow(0px 0px 25px rgba(30, 90, 34, 0.85));
     animation-duration: 7s;
     animation-timing-function: ease-in-out; 
     animation-fill-mode: forwards;
