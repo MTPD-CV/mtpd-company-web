@@ -4,14 +4,18 @@
 
 <div id="audio-widget" class="audio-widget">
   <button id="audio-toggle" class="audio-btn" aria-label="Play/Pause Background Music">
-    <!-- Muted Icon (Default state) -->
-    <svg id="icon-muted" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Arrow Icon (Visible when tucked) -->
+    <svg id="icon-arrow" class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+    <!-- Muted Icon -->
+    <svg id="icon-muted" class="icon-muted" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
       <line x1="23" y1="9" x2="17" y2="15"></line>
       <line x1="17" y1="9" x2="23" y2="15"></line>
     </svg>
     <!-- Playing Icon -->
-    <svg id="icon-playing" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg id="icon-playing" class="icon-playing is-js-hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
       <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
       <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
@@ -70,12 +74,12 @@
 
   function updateUI() {
     if (isPlaying) {
-      iconMuted?.classList.add('hidden');
-      iconPlaying?.classList.remove('hidden');
+      iconMuted?.classList.add('is-js-hidden');
+      iconPlaying?.classList.remove('is-js-hidden');
       if (titleEl) titleEl.textContent = "🎵 Memutar: " + playlist[currentTrack].title;
     } else {
-      iconPlaying?.classList.add('hidden');
-      iconMuted?.classList.remove('hidden');
+      iconPlaying?.classList.add('is-js-hidden');
+      iconMuted?.classList.remove('is-js-hidden');
       if (titleEl) titleEl.textContent = "BGM Jeda - " + playlist[currentTrack].title;
     }
   }
@@ -116,18 +120,37 @@
     height: 36px;
     border-radius: 50%;
     border: none;
-    background: var(--color-primary);
-    color: white;
+    background: white;
+    color: var(--color-primary); /* Arrow warna hijau */
     cursor: pointer;
     flex-shrink: 0;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   }
 
-  .audio-btn:hover {
-    background: var(--color-primary-light);
+  .audio-widget:hover .audio-btn,
+  .audio-widget.is-expanded .audio-btn {
+    background: var(--color-primary);
+    color: white; /* Ikon speaker warna putih saat ditarik */
   }
 
-  .hidden {
+  /* Logika Tampilan Ikon */
+  .icon-arrow { display: block; }
+  .icon-muted, .icon-playing { display: none; }
+
+  .audio-widget:hover .icon-arrow,
+  .audio-widget.is-expanded .icon-arrow {
+    display: none;
+  }
+
+  .audio-widget:hover .icon-muted:not(.is-js-hidden),
+  .audio-widget.is-expanded .icon-muted:not(.is-js-hidden),
+  .audio-widget:hover .icon-playing:not(.is-js-hidden),
+  .audio-widget.is-expanded .icon-playing:not(.is-js-hidden) {
+    display: block;
+  }
+
+  .is-js-hidden {
     display: none !important;
   }
 
