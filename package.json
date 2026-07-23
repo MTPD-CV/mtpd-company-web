@@ -8,13 +8,19 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "preview": "npm run build && wrangler dev",
+    "astro": "astro",
+    "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "11",
     "@astrojs/sitemap": "3.1.6",
     "@astrojs/svelte": "^5.0.3",
     "astro": "^4.16.1",
     "svelte": "^4.2.19"
+  },
+  "devDependencies": {
+    "wrangler": "^4.113.0"
   }
 }
